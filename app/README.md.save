@@ -1,0 +1,98 @@
+## 🥷 Cookie Ninja Suite – Auditoría web con estilo
+
+**Cookie Ninja** es una herramienta modular que permite auditar, clasificar, exportar y mejorar el manejo de cookies y encabezados en sitios protegidos por Cloudflare. Incluye resolución de CAPTCHA, carga desde archivos, panel visual para navegador y compatibilidad con entornos Android/Debian.
+
+---
+
+### 🚀 Características
+
+- 📥 Importación de cookies en JSON
+- 🍪 Clasificación inteligente según tipo y origen
+- 🛡️ Detección de protección Cloudflare
+- 🧠 Generación de headers evasivos
+- 🔐 Resolución de reCAPTCHA v2 vía [2Captcha](https://2captcha.com)
+- 🖥️ Panel visual desde navegador (Kiwi Browser)
+- 💼 Estructura modular para uso freemium/premium
+
+---
+
+### 📦 Instalación rápida
+
+```bash
+apt update
+apt install python3 git
+git clone https://github.com/tu_usuario/cookie_ninja.git
+cd cookie_ninja
+python3 -m venv flask_env
+source flask_env/bin/activate
+pip install flask requests
+python3 server.py
+```
+
+---
+
+### 🧪 Acceso al panel web
+
+Desde navegador local (recomendado Kiwi Browser):
+
+```
+http://localhost:8080
+```
+
+---
+
+### ⚙️ Ejecutar desde terminal
+
+```bash
+python3 app/cookie_ninja.py
+```
+
+---
+
+### 🔐 Integración con 2Captcha
+
+Regístrate en [2Captcha](https://2captcha.com)  
+Obtén tu clave API gratuita (funciona en modo de baja prioridad)  
+Si no se resuelve a tiempo, el sistema informa en el panel:
+
+```json
+"captcha_status": "No se resolvió el CAPTCHA a tiempo"
+```
+
+---
+
+### 📁 Estructura del proyecto
+
+```
+cookie_ninja/
+├── server.py                  # Servidor Flask
+├── static/                    # Archivos HTML y JS del panel
+│   └── ninja_interface.html
+├── app/                       # Módulos Python
+│   ├── cookie_ninja.py
+│   ├── cookie_importer.py
+│   ├── cookie_classifier.py
+│   ├── cloudflare_bypass.py
+│   ├── captcha_solver.py
+│   ├── __init__.py
+```
+
+---
+
+### ⚔️ Uso profesional
+
+Este sistema puede expandirse para:
+
+- Integración con ZAP, Wapiti o Nikto
+- Dashboard de auditoría
+- Resolución distribuida de CAPTCHA
+- Panel multiplataforma
+
+---
+
+### 🧳 Licencia
+
+Uso libre en entorno local y educativo.  
+Para versiones personalizadas o comerciales, contacta a través del repositorio.
+
+---

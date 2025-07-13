@@ -1,0 +1,4 @@
+[
+  {"name": "sessionid", "value": "abc123"},
+  {"name": "auth_token", "value": "xyz789"}
+]

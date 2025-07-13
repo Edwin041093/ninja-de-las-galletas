@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cookie Ninja Panel</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #10c7a7;
+      font-family: 'Courier New', monospace;
+      padding: 20px;
+    }
+    .card {
+      background-color: #2c2c2c;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 10px #10c7a7;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ccc;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background: #1f1f1f;
+      color: #10c7a7;
+      font-size: 1em;
+      margin-top: 5px;
+    }
+    button {
+      background: #10c7a7;
+      border: none;
+      color: #000;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 5px;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #14dab9;
+    }
+    #result-box {
+      background: #0e0e0e;
+      border: 1px solid #10c7a7;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 5px;
+      white-space: pre-wrap;
+      max-height: 400px;
+      overflow-y: auto;
+      font-size: 0.9em;
+    }
+    .copy-btn {
+      float: right;
+      margin-top: -10px;
+      font-size: 0.8em;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🥷 Cookie Ninja Interface</h1>
+    <form onsubmit="event.preventDefault(); ejecutarFlujo();">
+      <label for="cookies">Archivo de cookies</label>
+      <input type="text" id="cookies" value="sample_cookie.json" />
+
+      <label for="url">URL del sitio objetivo</label>
+      <input type="url" id="url" placeholder="https://example.com" />
+
+      <label for="sitekey">Clave CAPTCHA (sitekey)</label>
+      <input type="text" id="sitekey" placeholder="(opcional)" />
+
+      <label for="captcha">¿Resolver CAPTCHA?</label>
+      <select id="captcha">
+        <option value="no">No</option>
+        <option value="yes" selected>Sí</option>
+      </select>
+
+      <button type="submit">🚀 Ejecutar Flujo Ninja</button>
+    </form>
+
+    <button class="copy-btn" onclick="copiarResultado()">📋 Copiar resultado</button>
+    <div id="result-box">🧪 Resultados aparecerán aquí...</div>
+  </div>
+
+  <script>
+    function ejecutarFlujo() {
+      const data = {
+        archivo: document.getElementById('cookies').value,
+        url: document.getElementById('url').value,
+        sitekey: document.getElementById('captcha').value === 'yes'
+                 ? document.getElementById('sitekey').value : null
+      };
+
+      fetch('/ejecutar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(result => {
+        document.getElementById('result-box').textContent =
+          JSON.stringify(result, null, 2);
+      })
+      .catch(err => {
+        document.getElementById('result-box').textContent =
+          '⚠️ Error al ejecutar:\n' + err;
+      });
+    }
+
+    function copiarResultado() {
+      const content = document.getElementById('result-box').textContent;
+      navigator.clipboard.writeText(content)
+        .then(() => alert('✅ Resultado copiado al portapapeles'))
+        .catch(() => alert('⚠️ No se pudo copiar'));
+    }
+  </script>
+</body>
+</html>

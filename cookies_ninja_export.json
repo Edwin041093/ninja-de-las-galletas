@@ -1,0 +1,20 @@
+[
+    {
+        "name": "sessionid",
+        "value": "abc123",
+        "domain": ".example.com",
+        "path": "/",
+        "secure": false,
+        "httpOnly": false,
+        "tipo": "sesión"
+    },
+    {
+        "name": "auth_token",
+        "value": "xyz789",
+        "domain": ".example.com",
+        "path": "/",
+        "secure": false,
+        "httpOnly": false,
+        "tipo": "autenticación"
+    }
+]
