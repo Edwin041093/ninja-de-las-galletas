@@ -1,3 +1,4 @@
+![Banner Ninja de las Galletas](copilot_image_1752373574484.jpeg)
 📄 README.md — Ninja de las Galletas 🍪🥷
 
 `md
